@@ -41,3 +41,5 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.RData
+.Rproj.user/EF011529/sdb/s-E06A8A2B/lock_file

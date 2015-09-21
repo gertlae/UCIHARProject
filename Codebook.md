@@ -1,5 +1,6 @@
 #This is the codebook.
-## This code book describes the variables, the data, and any transformations or work performed to clean up the data 
+## This code book describes the variables, the data, and any transformations or work performed to clean up the data. 
+See also input file features_info.txt for the codebook of the input data.
 
 ##There are in total 68 variables in TidyUCIHar.csv
 1 Subject  

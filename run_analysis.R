@@ -1,18 +1,13 @@
-## set environment variables: working directory & packages
-ProjectWD = "C:/EDS/DSS/GetandCleanData/UCIHARProject"
-DatasetGenWD = "C:/EDS/DSS/GetandCleanData/UCIHARProject"
-DatasetTstWD = "C:/EDS/DSS/GetandCleanData/UCIHARProject"
-DatasetTrnWD = "C:/EDS/DSS/GetandCleanData/UCIHARProject"
+## load packages
 library(dplyr)
 
 
 ## 0. Read the input files.
 ##########################
-setwd(DatasetGenWD)
+
 ## Read names of variables aka features
 features <- readLines("features.txt")
 
-setwd(DatasetTstWD)
 ## read the test data,  with the variable names aka features
 x <- read.table("x_test.txt", header = F, col.names = features)
 ## read the subjects test variable subject_test.txt
@@ -22,7 +17,6 @@ y <- readLines("y_test.txt")
 ## add subjects and activity variables to test data frame
 Tst <-  data.frame(Subject = as.integer(subjects), Activity = y, x)
 
-setwd(DatasetTrnWD)
 ## read the train  data,  with the variable names aka features
 ## store into Har immediately to save memory later
 Har <- read.table("x_train.txt", header = F,col.names = features)
@@ -33,8 +27,6 @@ y <- readLines("y_train.txt")
 ## add subjects and activity variables to Har data frame
 Har <-  data.frame(Subject = as.integer(subjects), Activity = y, Har)
 
-
-setwd(DatasetGenWD)
 ## Read the labels for the activities
 activities <- read.table("activity_labels.txt", header = F, col.names = c("Activity", "ActLabel"))
 activities$Activity <-as.factor(activities$Activity)
@@ -75,7 +67,6 @@ colnames(Har) <- Cols
 Har <- group_by(Har, Subject, Activity)
 Har <- summarise_each(Har, funs(mean))
 
-setwd(ProjectWD)
 ## write the tidy dataset to disk
 write.table(Har, file ="TidyUCIHAR.txt", row.names = F )
 
